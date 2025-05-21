@@ -1,0 +1,568 @@
+{
+	"info": {
+		"_postman_id": "5d924d77-5066-4eef-a626-58c03d124d1a",
+		"name": "Mayron_VidaPlus",
+		"description": "Sistema de Gestão Hospitalar VidaPlus - UNINTER\n\n- Principais Funcionalidades Implementadas\n    \n    - Sistema de Autenticação\n        \n    - Registro de usuários\n        \n    - Login com JWT\n        \n    - Controle de acesso por perfiL\n        \n- Gestão de Pacientes\n    \n    - Cadastro completo\n        \n    - Histórico de consultas\n        \n    - Prontuários eletrônicos\n        \n- Gestão de Consultas\n    \n    - Agendamento\n        \n    - Cancelamento\n        \n    - Registro de prontuários\n        \n- Segurança\n    \n    - Criptografia de senhas\n        \n    - Tokens JWT\n        \n    - Validação de dadosEndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44462061",
+		"_collection_link": "https://warped-capsule-8847242.postman.co/workspace/Mafe_Lira's-Workspace~7fe63c63-90e6-4b2d-8c70-5f56661b5f9a/collection/44462061-5d924d77-5066-4eef-a626-58c03d124d1a?action=share&source=collection_link&creator=44462061"
+	},
+	"item": [
+		{
+			"name": "Autenticação",
+			"item": [
+				{
+					"name": "Registro de Usuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"João Silva\",\n    \"email\": \"joao@email.com\",\n    \"senha\": \"senha123\",\n    \"tipo\": \"administrador\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/registro",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"registro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"joao@email.com\",\n    \"senha\": \"senha123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"item": [
+				{
+					"name": "Listar Pacientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pacientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Paciente",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pacientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pacientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"123.456.789-00\",\n    \"data_nascimento\": \"1990-01-01\",\n    \"telefone\": \"(11) 99999-9999\",\n    \"endereco\": \"Rua Exemplo, 123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pacientes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pacientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"telefone\": \"(11) 98888-8888\",\n    \"endereco\": \"Nova Rua, 456\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/pacientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pacientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/pacientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"pacientes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consultas",
+			"item": [
+				{
+					"name": "Listar Consultas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/consultas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"consultas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Consulta",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/consultas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"consultas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agendar Consulta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"paciente_id\": 1,\n    \"medico_id\": 1,\n    \"data_hora\": \"2024-03-20 14:30:00\",\n    \"tipo\": \"presencial\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/consultas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"consultas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Consulta",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data_hora\": \"2024-03-21 15:30:00\",\n    \"status\": \"realizada\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/consultas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"consultas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cancelar Consulta",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/consultas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"consultas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prontuários",
+			"item": [
+				{
+					"name": "Listar Prontuários",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/prontuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"prontuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Prontuário",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/prontuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"prontuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Prontuário",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"consulta_id\": 1,\n    \"paciente_id\": 1,\n    \"descricao\": \"Paciente apresentou sintomas de gripe\",\n    \"prescricao\": \"Repouso e medicamentos prescritos\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/prontuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"prontuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Prontuário",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Paciente apresentou melhora significativa\",\n    \"prescricao\": \"Continuar medicação por mais 3 dias\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/prontuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"prontuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Prontuário",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5000/api/prontuarios/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"prontuarios",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc0Nzc1NjU5NywianRpIjoiNDhkMzUzZjktNjA4Yi00YzJmLWE5MjMtNjRlNzlmNmE2YmU4IiwidHlwZSI6ImFjY2VzcyIsInN1YiI6MSwibmJmIjoxNzQ3NzU2NTk3LCJleHAiOjE3NDc3NjAxOTd9.7T0aoqahWJ4NjS4f6HjVHT4lmCSLkYGUpHDsfjA1uq8",
+			"type": "string"
+		}
+	]
+}
